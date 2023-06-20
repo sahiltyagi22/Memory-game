@@ -53,13 +53,25 @@ const imageArray = [
  
  let gridDisplay = document.querySelector('#grid')
 
+ const clickImg =[]
+
  function displayBoard (){
-    for(let i =0 ; i<10; i++){
+    for(let i =0 ; i<imageArray.length; i++){
         const card =document.createElement('img')
         
         card.setAttribute('src' , 'images/blank.png')
         card.setAttribute('data-id' , i)
         gridDisplay.append(card)
+        card.addEventListener('click' , flipCard)
         
     }
  }displayBoard()
+
+ function flipCard(){
+    console.log(imageArray);
+  const dataId=this.getAttribute('data-id')
+//   console.log( imageArray[dataId].img);
+  clickImg.push(imageArray[dataId].img)
+  console.log(clickImg);
+  this.setAttribute('src' ,imageArray[dataId].src)
+ }
