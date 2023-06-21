@@ -55,6 +55,8 @@ const imageArray = [
 
  const clickImg =[]
 
+ clickImgId = []
+
  function displayBoard (){
     for(let i =0 ; i<imageArray.length; i++){
         const card =document.createElement('img')
@@ -67,11 +69,28 @@ const imageArray = [
     }
  }displayBoard()
 
+
+function checkMatch(){
+    const cards = document.querySelectorAll('img')
+    if(clickImg[0]== clickImg[1]){
+        alert("you found a match")
+    }
+}
+
+
+
  function flipCard(){
-    console.log(imageArray);
+
   const dataId=this.getAttribute('data-id')
 //   console.log( imageArray[dataId].img);
   clickImg.push(imageArray[dataId].img)
-  console.log(clickImg);
   this.setAttribute('src' ,imageArray[dataId].src)
+  clickImgId.push(dataId)
+  
+  console.log(clickImgId);
+  
+ if(clickImg.length===2){
+    setTimeout(checkMatch , 500)
+    
+ }
  }
