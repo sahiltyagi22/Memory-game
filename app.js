@@ -53,11 +53,19 @@ const imageArray = [
  
  let gridDisplay = document.querySelector('#grid')
 
- const clickImg =[]
+ let result = document.querySelector("#result")
+
+ let clickImg =[]
 
  let clickImgId = []
 
  let cardsWon = []
+
+ let option1 = clickImgId[0]
+
+ let option2 = clickImgId[1]
+
+
 
  function displayBoard (){
     for(let i =0 ; i<imageArray.length; i++){
@@ -76,6 +84,12 @@ const imageArray = [
 
 function checkMatch(){
     const cards = document.querySelectorAll('img')
+
+//   if(clickImgId[0] == clickImgId[1]){
+//     alert("you have clicked the same image")
+
+//   }
+
     if(clickImg[0]== clickImg[1]){
         alert("you found a match")
         cards[clickImgId[0]].setAttribute('src' , 'images/white.png')
@@ -84,9 +98,20 @@ function checkMatch(){
         cards[clickImgId[1]].removeEventListener('click' , flipCard)
         cardsWon.push(clickImg)
 
+    }else{
+        cards[clickImgId[0]].setAttribute('src' , 'images/blank.png')
+        cards[clickImgId[1]].setAttribute('src' , 'images/blank.png')
+        alert("sorry try again")
     }
+
+    result.innerHTML = cardsWon.length
+
     clickImg=[]
     clickImgId=[]
+
+    if(cardsWon.length == (imageArray.length/2)){
+        result.innerHTML = "HEY YOU WON"
+    }
 }
 
 
