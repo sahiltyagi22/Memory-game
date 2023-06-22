@@ -55,7 +55,9 @@ const imageArray = [
 
  const clickImg =[]
 
- clickImgId = []
+ let clickImgId = []
+
+ let cardsWon = []
 
  function displayBoard (){
     for(let i =0 ; i<imageArray.length; i++){
@@ -70,11 +72,21 @@ const imageArray = [
  }displayBoard()
 
 
+
+
 function checkMatch(){
     const cards = document.querySelectorAll('img')
     if(clickImg[0]== clickImg[1]){
         alert("you found a match")
+        cards[clickImgId[0]].setAttribute('src' , 'images/white.png')
+        cards[clickImgId[1]].setAttribute('src' , 'images/white.png')
+        cards[clickImgId[0]].removeEventListener('click' , flipCard)
+        cards[clickImgId[1]].removeEventListener('click' , flipCard)
+        cardsWon.push(clickImg)
+
     }
+    clickImg=[]
+    clickImgId=[]
 }
 
 
@@ -82,11 +94,11 @@ function checkMatch(){
  function flipCard(){
 
   const dataId=this.getAttribute('data-id')
-//   console.log( imageArray[dataId].img);
   clickImg.push(imageArray[dataId].img)
   this.setAttribute('src' ,imageArray[dataId].src)
   clickImgId.push(dataId)
   
+
   console.log(clickImgId);
   
  if(clickImg.length===2){
